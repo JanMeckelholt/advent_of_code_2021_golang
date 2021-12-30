@@ -19,7 +19,7 @@ func part1(path string) (gamma uint64, ypsilon uint64, err error) {
 	for scanner.Scan() {
 		sensorString := scanner.Text()
 		for i, _ := range sensorString {
-			countArray[i] = stringToCount(sensorString, i, countArray[i])
+			countArray[i] = stringToCount0(sensorString, i, countArray[i])
 		}
 	}
 	gammaString := countsToGammaString(countArray)
@@ -36,14 +36,6 @@ func part1(path string) (gamma uint64, ypsilon uint64, err error) {
 	}
 
 	return gamma, ypsilon, nil
-}
-
-func stringToCount(inputString string, position int, counter int64) int64 {
-	if inputString[position:position+1] == string('0') {
-		return counter + 1
-	} else {
-		return counter - 1
-	}
 }
 
 func countsToGammaString(countArray [12]int64) string {
