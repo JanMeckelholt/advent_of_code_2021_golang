@@ -1,39 +1,21 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
-	"os"
-	"strconv"
 )
 
 func main() {
 
-	file, err := os.Open("./input.txt")
+	resultPart1, err := part1("./input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
+	fmt.Printf("Result Part1: %v \n", resultPart1)
 
-	var previous uint64
-	log.Println(&previous)
-	count := 0
-	first := true
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		next, err := strconv.ParseUint(scanner.Text(), 10, 64)
-		if err != nil {
-			log.Fatal(err)
-		}
-		if !first && next > previous {
-			count++
-		}
-		first = false
-		previous = next
-	}
-	if err := scanner.Err(); err != nil {
+	resultPart2, err := part2("./input.txt")
+	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(count)
+	fmt.Printf("Result Part2: %v \n", resultPart2)
 }
