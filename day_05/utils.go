@@ -65,6 +65,30 @@ func lineToPoints(line Line) []Point {
 		for i := start; i <= end; i++ {
 			points = append(points, Point{i, line.a.y})
 		}
+	} else { //Part2
+		startX := min(line.a.x, line.b.x)
+		endX := max(line.a.x, line.b.x)
+		if line.a.x < line.b.x { // A before B
+			if line.a.y < line.b.y { // increasing from A to B
+				for i := uint64(0); i <= endX-startX; i++ {
+					points = append(points, Point{startX + i, line.a.y + i})
+				}
+			} else { // decreasing from A to B
+				for i := uint64(0); i <= endX-startX; i++ {
+					points = append(points, Point{startX + i, line.a.y - i})
+				}
+			}
+		} else {                     // B before A
+			if line.b.y < line.a.y { // increasing from B to A
+				for i := uint64(0); i <= endX-startX; i++ {
+					points = append(points, Point{startX + i, line.b.y + i})
+				}
+			} else { // decreasing from B to A
+				for i := uint64(0); i <= endX-startX; i++ {
+					points = append(points, Point{startX + i, line.b.y - i})
+				}
+			}
+		}
 	}
 
 	return points

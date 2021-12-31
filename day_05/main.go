@@ -11,6 +11,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Result Part1: \nNumber of Duplicates: %v", numberOfDuplicates)
+	fmt.Printf("Result: \nNumber of Duplicates: %v", numberOfDuplicates)
 
 }
