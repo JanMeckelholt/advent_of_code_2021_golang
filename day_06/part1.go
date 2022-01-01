@@ -15,7 +15,7 @@ func part1(path string) (finalNumber uint64, err error) {
 	}
 	defer file.Close()
 
-	values := make([]uint64, 0)
+	values := make([]uint, 0)
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		inputString := scanner.Text()
@@ -25,7 +25,7 @@ func part1(path string) (finalNumber uint64, err error) {
 			if err != nil {
 				return 0, err
 			}
-			values = append(values, value)
+			values = append(values, uint(value))
 		}
 
 	}
@@ -35,17 +35,4 @@ func part1(path string) (finalNumber uint64, err error) {
 	}
 
 	return uint64(len(values)), nil
-}
-
-func advanceOne(values []uint64) []uint64 {
-	newValues := make([]uint64, 0)
-	for _, value := range values {
-		if value > 0 {
-			value--
-			newValues = append(newValues, value)
-		} else if value == 0 {
-			newValues = append(newValues, 6, 8)
-		}
-	}
-	return newValues
 }
