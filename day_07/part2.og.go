@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func part1(path string) (position uint, minFuel uint64, err error) {
+func part2(path string) (position uint, minFuel uint64, err error) {
 	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
@@ -31,12 +31,12 @@ func part1(path string) (position uint, minFuel uint64, err error) {
 	}
 	minValue, maxValue := MinMax(values)
 	duplicateFrequency := getDuplicateFrequency(values)
-	minFuel = calcFuel(values, minValue)
+	minFuel = calcFuel2(values, minValue)
 	position = minValue
 	for i := minValue; i <= maxValue; i++ {
 		_, exists := duplicateFrequency[i]
 		if exists {
-			fuel := calcFuel(values, i)
+			fuel := calcFuel2(values, i)
 			if fuel < minFuel {
 				minFuel = fuel
 				position = i

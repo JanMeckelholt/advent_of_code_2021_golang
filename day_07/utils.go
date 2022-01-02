@@ -21,6 +21,16 @@ func abs(a int) uint {
 	return uint(a)
 }
 
+func fuelBetween(a, b uint) uint64 {
+	fuel := uint64(0)
+	x := min(uint64(a), uint64(b))
+	y := max(uint64(a), uint64(b))
+	for i := uint64(1); i <= y-x; i++ {
+		fuel += i
+	}
+	return fuel
+}
+
 func MinMax(array []uint) (uint, uint) {
 	var max uint = array[0]
 	var min uint = array[0]
@@ -53,6 +63,14 @@ func calcFuel(values []uint, position uint) uint64 {
 	fuel := uint64(0)
 	for _, value := range values {
 		fuel += uint64(abs(int(value - position)))
+	}
+	return fuel
+}
+
+func calcFuel2(values []uint, position uint) uint64 {
+	fuel := uint64(0)
+	for _, value := range values {
+		fuel += fuelBetween(value, position)
 	}
 	return fuel
 }
