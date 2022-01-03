@@ -1,12 +1,12 @@
 package main
 
-var Zero = [...]rune{'a', 'b', 'c', 'e', 'f', 'g'}
-var One = [...]rune{'c', 'f'}
-var Two = [...]rune{'a', 'c', 'd', 'e', 'g'}
-var Three = [...]rune{'a', 'c', 'd', 'f', 'g'}
-var Four = [...]rune{'b', 'c', 'd', 'f'}
-var Five = [...]rune{'a', 'b', 'd', 'f', 'g'}
-var Six = [...]rune{'a', 'b', 'd', 'e', 'f', 'g'}
-var Seven = [...]rune{'a', 'c', 'f'}
-var Eight = [...]rune{'a', 'b', 'c', 'd', 'e', 'f', 'g'}
-var Nine = [...]rune{'a', 'b', 'c', 'd', 'e', 'g'}
+var Zero = []string{"a", "b", "c", "e", "f", "g"}
+var One = []string{"c", "f"}
+var Two = []string{"a", "c", "d", "e", "g"}
+var Three = []string{"a", "c", "d", "f", "g"}
+var Four = []string{"b", "c", "d", "f"}
+var Five = []string{"a", "b", "d", "f", "g"}
+var Six = []string{"a", "b", "d", "e", "f", "g"}
+var Seven = []string{"a", "c", "f"}
+var Eight = []string{"a", "b", "c", "d", "e", "f", "g"}
+var Nine = []string{"a", "b", "c", "d", "f", "g"}
