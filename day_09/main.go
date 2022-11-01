@@ -13,4 +13,10 @@ func main() {
 	}
 	fmt.Printf("Result: \nRisknumber: %v\n", risknumber)
 
+	lowPoints, err := part2("./input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("LowPoints Product Max 3: %v\n", lowPoints)
+
 }
