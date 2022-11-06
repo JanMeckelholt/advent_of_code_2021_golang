@@ -8,7 +8,8 @@ import (
 
 var openingCharacters = []rune{'(', '[', '<', '{'}
 var closingCharacters = []rune{')', ']', '>', '}'}
-var points = map[rune]uint{')': 3, ']': 57, '>': 25137, '}': 1197}
+var pointsCorrupt = map[rune]uint{')': 3, ']': 57, '>': 25137, '}': 1197}
+var pointsIncomplete = map[rune]uint{'(': 1, '[': 2, '<': 4, '{': 3}
 
 func readIn(path string) ([]string, error) {
 	file, err := os.Open(path)
@@ -53,7 +54,7 @@ func getIndex(chars []rune, c rune) int {
 	return -1
 }
 
-func checkLine(line string) rune {
+func checkLine(line string) (errorCharacter rune, remaining string) {
 	remainingLine := line
 	for len(remainingLine) >= 2 {
 		found := false
@@ -65,24 +66,39 @@ func checkLine(line string) rune {
 					remainingLine = remainingLine[:i-1] + remainingLine[i+1:]
 					break ChangeRemainingLine
 				} else {
-					return c
+					return c, ""
 				}
 			}
 		}
 		if !found {
-			return '0'
+			return rune('0'), remainingLine
 		}
 	}
-	return '0'
+	return rune('0'), remainingLine
 }
 
-func getScore(navSys []string) uint {
-	var num uint
-	for _, line := range navSys {
-		firstWrongC := checkLine(line)
-		if point, ok := points[firstWrongC]; ok {
-			num += point
+func sort(unsorted []uint) []uint {
+	complete := false
+	sorted := unsorted
+	for !complete {
+		changedSomething := false
+		for i, v := range sorted {
+			if len(sorted)-1 > i && sorted[i+1] < v {
+				sorted[i] = sorted[i+1]
+				sorted[i+1] = v
+				changedSomething = true
+			}
+		}
+		if !changedSomething {
+			complete = true
 		}
 	}
-	return num
+	return sorted
+}
+
+func reverse(s string) (result string) {
+	for _, v := range s {
+		result = string(v) + result
+	}
+	return
 }
