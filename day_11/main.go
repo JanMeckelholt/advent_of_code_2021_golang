@@ -13,10 +13,10 @@ func main() {
 	}
 	fmt.Printf("Result: \nNumber of Flashes: %v\n", numberOfFlashes)
 
-	// scorePart2, err := part2("./input.txt")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// fmt.Printf("Score Part 2: %v\n", scorePart2)
+	interationZero, err := part2("./input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Number of Itertions: %v\n", interationZero)
 
 }

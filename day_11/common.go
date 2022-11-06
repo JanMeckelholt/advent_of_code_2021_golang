@@ -43,6 +43,19 @@ func getNumberOfFlashes(eMap *map[int]map[int]int) (n int) {
 	return n
 }
 
+func getInterationZero(eMap *map[int]map[int]int) (n int) {
+
+	for i := 0; i < 1000; i++ {
+		_ = doOneRound(eMap)
+		if checkMapZero(eMap) {
+			printEMap(eMap)
+			return i + 1
+		}
+	}
+	printEMap(eMap)
+	return 0
+}
+
 func doOneRound(eMap *map[int]map[int]int) (numberOfFlashes int) {
 	for row, line := range *eMap {
 		for i, v := range line {
@@ -100,4 +113,15 @@ func printEMap(eMap *map[int]map[int]int) {
 
 	}
 	fmt.Println("**************")
+}
+
+func checkMapZero(eMap *map[int]map[int]int) bool {
+	for _, line := range *eMap {
+		for _, v := range line {
+			if v != 0 {
+				return false
+			}
+		}
+	}
+	return true
 }
