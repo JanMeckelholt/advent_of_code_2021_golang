@@ -5,5 +5,5 @@ func part1(path string) (numberOfPathes int, err error) {
 	if err != nil {
 		return 0, err
 	}
-	return getNumberOfPathes(*points, (*points)["start"], 0), nil
+	return getNumberOfPathes(*points, (*points)["start"], 0, true), nil
 }

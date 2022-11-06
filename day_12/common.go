@@ -57,17 +57,20 @@ func readIn(path string) (*map[string]Point, error) {
 	return &points, nil
 }
 
-func getNumberOfPathes(m map[string]Point, current Point, count int) int {
+func getNumberOfPathes(m map[string]Point, current Point, count int, twice bool) int {
 
 	for _, dest := range current.Connections {
 		if dest == "end" {
 			count++
-			//return count
 		} else {
 			newPoint := m[dest]
-			if newPoint.Visited && !newPoint.Uppercase {
+			t := twice
+			if twice && newPoint.Visited && !newPoint.Uppercase {
 				//deadend -> no count increase
 				continue
+			}
+			if !newPoint.Uppercase && newPoint.Visited {
+				t = true
 			}
 			newPoint.Visited = true
 			newMap := make(map[string]Point, len(m))
@@ -75,7 +78,7 @@ func getNumberOfPathes(m map[string]Point, current Point, count int) int {
 				newMap[k] = v
 			}
 			newMap[dest] = newPoint
-			count = getNumberOfPathes(newMap, newPoint, count)
+			count = getNumberOfPathes(newMap, newPoint, count, t)
 		}
 	}
 	return count

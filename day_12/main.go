@@ -11,6 +11,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Result: \nNumber of Pathes: %v\n", numberOfPathes)
+	fmt.Printf("Result: \nNumber of Pathes Part 1: %v\n", numberOfPathes)
+
+	numberOfPathes2, err := part2("./input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Result: \nNumber of Pathes Part 2: %v\n", numberOfPathes2)
 
 }
